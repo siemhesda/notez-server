@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 
 const app = express();
-const port = 3001; // You can use any port you prefer
+const PORTS = 3001; // You can use any port you prefer
 
 app.use(express.json());
 app.use(cors()); // Allow cross-origin requests
@@ -36,9 +36,9 @@ app.delete("/api/notes", (req, res) => {
   const newNote = data.filter((note) => note.id != noteId);
   fs.writeFileSync(notesFfilePath, JSON.stringify(newNote, null, 2));
   console.log(noteId, newNote);
-  res.status(201).json({ message: "Nnote deleted successfully" });
+  res.status(201).json({ message: "Note deleted successfully" });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
